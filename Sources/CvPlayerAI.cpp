@@ -10263,6 +10263,11 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, const CvArea*
 	bool bisPositivePropertyUnit = (iGeneralPropertyValue > 0);
 	bool bUndefinedValid = false, bValid = false;
 
+	if (eUnitAI != UNITAI_PROPERTY_CONTROL && eUnitAI != UNITAI_SEE_INVISIBLE && bisPositivePropertyUnit)
+	{
+		return 0;
+	}
+
 	switch (eUnitAI)
 	{
 		case UNITAI_UNKNOWN:
@@ -26223,11 +26228,11 @@ void CvPlayerAI::AI_setPushReligiousVictory()
 	}
 
 	bool bStateReligionBest = true;
-	for (iI = 0; iI < GC.getNumReligionInfos(); iI++)
+	for (int iJ = 0; iJ < GC.getNumReligionInfos(); iJ++)
 	{
-		if (eStateReligion != (ReligionTypes)iI)
+		if (eStateReligion != (ReligionTypes)iJ)
 		{
-			if (GC.getGame().calculateReligionPercent((ReligionTypes)iI) > iStateReligionInfluence)
+			if (GC.getGame().calculateReligionPercent((ReligionTypes)iJ) > iStateReligionInfluence)
 			{
 				bStateReligionBest = false;
 				break;
