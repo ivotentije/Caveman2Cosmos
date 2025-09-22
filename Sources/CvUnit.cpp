@@ -6331,13 +6331,14 @@ void CvUnit::move(CvPlot* pPlot, bool bShow)
 			gDLL->getInterfaceIFace()->playGeneralSound("AS3D_UN_BIRDS_SCATTER", pPlot->getPoint());
 		}
 	}
-	if((pPlot->getOwner() != getOwner() || !pPlot->isOwned() ) && pPlot->getOwner() != isNPC())
+
+	if((pPlot->getOwner() != getOwner() || !pPlot->isOwned() ) && !isNPC())
 	{
-		changeExperience100(10, 5);
-		changeExperience100(1, 20);
+		changeExperience100(10, 500);
+		changeExperience100(1, 2000);
 		if(isHasUnitCombat(GC.getUNITCOMBAT_RECON()))
 		{
-			changeExperience100(4, 100);
+			changeExperience100(4, 10000);
 		}
 	}
 }
